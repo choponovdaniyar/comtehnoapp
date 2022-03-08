@@ -1,0 +1,3 @@
+Регистрация,account-multiple-check,https://comtehno.kg/online-requast/
+Онлайн тест. Вариант A,ab-testing,https://comtehno.kg/online-test-a
+Онлайн тест. Вариант B,ab-testing,https://comtehno.kg/online-test-b

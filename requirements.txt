@@ -1,0 +1,10 @@
+kivy==2.1.0
+kivymd==2.1.0
+requests==2.21.0
+fake_useragent==0.1.11
+bs4==0.0.1  
+beautifulsoup4==4.10.0 
+psycopg2==2.9.3
+lxml==4.6.4
+asyncio==3.4.3
+environs==9.5.0

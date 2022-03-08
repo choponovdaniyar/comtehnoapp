@@ -1,0 +1,425 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<Content>:
+    adaptive_height: True
+    MDExpansionPanelOneLine:
+        text: "(050)-123-45-67"
+
+<MyLabel>:
+    size_hint_y: None
+    height: self.texture_size[1]
+    text_size: self.width, None
+
+<TimetableTable>:
+    rows_num: 4
+    column_data:[("Время", dp(15)),("Предмет", dp(60)  ),("Преподаватель", dp(40)),("Кабинет", dp(15))]
+
+<TimetableLayout>:
+    size_hint_y: None
+    spacing: 15
+    orientation: "vertical"
+    size: [self.width, 320]
+
+<ContentNavigationDrawer>
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"  
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "data/logo.png"
+            
+    MDLabel:
+        text: "Бишкекский колледж компьютерных систем и технологии"
+        adaptive_height: True
+
+    MDLabel:
+        text: "comtehno.kg@gmail.com"
+        font_style: "Caption"
+        adaptive_height: True
+    
+    ScrollView:
+        MDList:
+            OneLineIconListItem:
+                text: "Главное"
+                
+                on_release: 
+                    self.parent.set_color_item(self)
+
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "main"
+
+                IconLeftWidget:
+                    id: icon
+                    icon:  "account-circle"
+
+            OneLineIconListItem:
+                text: "Абитуриентам"
+
+                on_release: 
+                    self.parent.set_color_item(self)
+
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "enrollee"
+
+                IconLeftWidget:
+                    id: icon
+                    icon:"account-group"
+
+            OneLineIconListItem:
+                text: "Приемная коммисия"
+
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "commission"
+
+                IconLeftWidget:
+                    id: icon
+                    icon: "playlist-edit"
+
+            OneLineIconListItem:
+                text: "Студентам"
+
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "student"
+
+                IconLeftWidget:
+                    id: icon
+                    icon: "account-supervisor-circle"
+
+            OneLineIconListItem:
+                text: "light/dark mode"
+
+                on_press:
+                    app.switch_mode()
+                    root.nav_drawer.set_state("close")
+
+                IconLeftWidget:
+                    id: icon
+                    icon: "theme-light-dark"
+                
+MDScreen:    
+
+    
+
+
+    MDNavigationLayout:
+        x: toolbar.height
+
+    ScreenManager:
+        id: screen_manager
+
+        MDScreen:
+            name: "main"
+
+            MDBottomNavigation:
+                #   : get_color_from_hex("#eeeaea")
+                # selected_color_background: get_color_from_hex("#97ecf8")
+                text_color_active: 0, 0, 0, 1
+
+                MDBottomNavigationItem:
+                    name: 'networks'
+                    text: 'Соц.сети'
+                    icon: 'account-search'
+                    badge_icon: "numeric-10"
+
+                    MDBoxLayout:
+                        canvas:
+                            Rectangle:
+                                size: root.size
+
+                        orientation: "vertical"
+                        height: root.height
+                        padding: 10, toolbar.height + 10, 10, 0
+                        ScrollView:
+                            
+                            scroll_type: ['bars', 'content']
+                            MDBoxLayout:
+                                id: networks_box
+                                orientation: "vertical"
+                                size_hint_y: None
+                                adaptive_height: True
+                                MyLabel:
+                                    text: "При клике на строку вы перейдете на нужную страницу...\n\n"
+
+                MDBottomNavigationItem:
+                    name: "mission"
+                    text: 'Миссия колледжа'
+                    icon: 'xml'
+                    badge_icon: "numeric-5"
+
+                    MDBoxLayout:
+                        id: mission_box
+                        canvas:
+                            Rectangle:
+                                size: root.size
+
+                        orientation: "vertical"
+                        height: root.height
+                        padding: 10, toolbar.height + 10, 10, 0
+                        ScrollView:
+                            scroll_type: ['bars', 'content']
+                            MyLabel:
+                                id: mission_text
+
+                MDBottomNavigationItem:
+                    name: 'about'
+                    text: 'О нас'
+                    icon: 'microsoft-office'
+                    badge_icon: "numeric-5"
+                    
+                    MDBoxLayout:
+                        id: about_box
+                        canvas:
+                            Rectangle:
+                                size: root.size
+
+                        orientation: "vertical"
+                        height: root.height
+                        padding: 10, toolbar.height + 10, 10, 0
+                        ScrollView:
+                            scroll_type: ['bars', 'content']
+                            MyLabel:
+                                id: about_text
+        MDScreen:
+            name: "enrollee"
+
+            MDBottomNavigation:
+                text_color_active: 0, 0, 0, 1
+
+                MDBottomNavigationItem:
+                    name: 'append'
+                    text: 'Абитуриенту'
+                    icon: 'account-edit'
+                    badge_icon: "numeric-10"
+
+                    MDBoxLayout:
+                        canvas:
+                            Rectangle:
+                                size: root.size
+
+                        orientation: "vertical"
+                        height: root.height
+                        padding: 10, toolbar.height + 10, 10, 0
+                        ScrollView:
+                            scroll_type: ['bars', 'content']
+                            MDBoxLayout:
+                                id: append_box
+                                orientation: "vertical"
+                                size_hint_y: None
+                                adaptive_height: True
+                                MyLabel:
+                                    text: "При клике на на строку вы перейдете на нужную страницу...\n\n"
+                              
+
+                MDBottomNavigationItem:
+                    name: 'speciality'
+                    text: 'Специальности'
+                    icon: 'account-box'
+                    MDBoxLayout:
+                        canvas:
+                            Rectangle:
+                                size: root.size
+
+                        orientation: "vertical"
+                        height: root.height
+                        padding: 10, toolbar.height + 10, 10, 0
+                        ScrollView:
+                            scroll_type: ['bars', 'content']
+                            MDBoxLayout:
+                                id: speciality_box
+                                orientation: "vertical"
+                                size_hint_y: None
+                                adaptive_height: True
+                                    
+
+        MDScreen:
+            name: "commission"
+
+            MDBottomNavigation:
+                text_color_active: 0, 0, 0, 1
+
+                MDBottomNavigationItem:
+                    name: 'documents'
+                    text: 'Перечень документов'
+                    icon: 'file-document'
+                    badge_icon: "numeric-10"
+                    MDBoxLayout:
+                        id: documents_box
+                        canvas:
+                            Rectangle:
+                                size: root.size
+
+                        orientation: "vertical"
+                        height: root.height
+                        padding: 10, toolbar.height + 10, 10, 0
+                        ScrollView:
+                            scroll_type: ['bars', 'content']
+                            MyLabel:
+                                id: documents_text
+
+                                
+                            
+
+                MDBottomNavigationItem:
+                    name: 'contact'
+                    text: 'Контакты'
+                    icon: 'account'
+                    badge_icon: "numeric-5"
+                    MDBoxLayout:
+                        canvas:
+                            Rectangle:
+                                size: root.size
+
+                        orientation: "vertical"
+                        height: root.height
+                        padding: 10, toolbar.height + 10, 10, 0
+                        ScrollView:
+                            scroll_type: ['bars', 'content']
+                            MDBoxLayout:
+                                id: contact_box
+                                orientation: "vertical"
+                                size_hint_y: None
+                                adaptive_height: True
+
+        
+        MDScreen:
+            name: "student"
+
+            MDBottomNavigation:
+                text_color_active: 0, 0, 0, 1
+
+                MDBottomNavigationItem:
+                    name: 'tametable'
+                    text: 'Расписание'
+                    icon: 'timetable'
+                    badge_icon: "numeric-10"
+
+                    MDBoxLayout:
+                        canvas:
+                            Rectangle:
+                                size: root.size
+
+                        orientation: "vertical"
+                        height: root.height
+                        padding: 10, toolbar.height + 10, 10, 0
+                        ScrollView:
+                            scroll_type: ['bars', 'content']
+                            MDBoxLayout:
+                                id: timetable_box
+                                orientation: "vertical"
+                                size_hint_y: None
+                                adaptive_height: True
+                                spacing: 30
+                                padding: 10
+                                MyLabel:
+                                    text:"Расписание\n\n"
+                                    font_style:"H6"
+                                AnchorLayout:
+                                    anchor_x: "right"
+                                    anchor_y: "center"
+                                    MDBoxLayout:
+                                        size_hint_x: None
+                                        width: "270dp"
+                                        adaptive_height: True
+                                        orientation: "vertical"
+                                        spacing: 10
+                                        MDTextField:
+                                            id: timetable_group
+                                            hint_text: "Введите название группы"
+                                            helper_text: "Русские буквы. Например: ПОВТ-2-20"
+                                            size_hint_x: None
+                                            width: "250dp"
+                                            helper_text_mode: "persistent"
+
+                                        MDTextField:
+                                            id: timetable_day
+                                            hint_text: "Введите номер дня недели"
+                                            helper_text: "Например: 1"
+                                            size_hint_x: None
+                                            width: "250dp"
+                                            helper_text_mode: "persistent"
+                                MyLabel:
+                                    text: "\n"*5
+                                TimetableLayout:
+                                    id: table1
+                                TimetableLayout:
+                                    id: table2
+                                        
+
+
+                MDBottomNavigationItem:
+                    name: 'teach'
+                    text: 'Посещение'
+                    icon: 'teach'
+                    badge_icon: "numeric-10"
+
+                    MDBoxLayout:
+                        canvas:
+                            Rectangle:
+                                size: root.size
+
+                        orientation: "vertical"
+                        height: root.height
+                        padding: 10, toolbar.height + 10, 10, 0
+
+                        ScrollView:
+                            scroll_type: ['bars', 'content']
+                            MDBoxLayout:
+                                id: teach_box
+                                orientation: "vertical"
+                                size_hint_y: None
+                                adaptive_height: True
+                                spacing: 30
+                                padding: 10
+
+
+                MDBottomNavigationItem:
+                    name: 'library'
+                    text: 'Библиотека'
+                    icon: 'library'
+
+                    MDLabel:
+                        text: 'Библиотека'
+                        halign: 'center'
+
+                MDBottomNavigationItem:
+                    name: 'moodle'
+                    text: 'moodle'
+                    icon: 'book'
+
+                    MDLabel:
+                        text: 'MOODLE временно не работает!'
+                        halign: 'center'
+
+    
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        title: "COMTEHNO"
+        md_bg_color: [.0, .27, .24, 1]
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]   
+
+    MDNavigationDrawer:
+        id: nav_drawer
+
+        ContentNavigationDrawer:
+            screen_manager: screen_manager
+            nav_drawer: nav_drawer
+    MDSpinner:
+        id: spinner
+        size_hint: None, None
+        size: dp(48), dp(48)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        active: False

@@ -1,0 +1,4 @@
+бот телеграм,robot,https://t.me/comtehnokgbot
+facebook,facebook,https://www.facebook.com/profile.php?id=100019122999975
+instagram,instagram,https://instagram.com/comtehno.kg
+youtube,youtube,https://www.youtube.com/channel/UCOGHV349F9HtP8F_Htp6ulQ
